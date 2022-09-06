@@ -1140,9 +1140,12 @@ input, select, textarea {
 			-ms-transition-delay: 0.75s;
 			transition-delay: 0.75s;
 			background-image: linear-gradient(to top, rgba(19, 21, 25, 0.5), rgba(19, 21, 25, 0.5)), url("../../images/overlay.png");
-			background-size: auto, 256px 256px;
-			background-position: center, center;
-			background-repeat: no-repeat, repeat;
+			background-size: auto,
+ 256px 256px;
+			background-position: center,
+ center;
+			background-repeat: no-repeat,
+ repeat;
 			z-index: 2;
 		}
 
@@ -1656,3 +1659,91 @@ input, select, textarea {
 		body.is-preload #footer {
 			opacity: 0;
 		}
+
+		.base-timer {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  margin: auto;
+}
+
+.base-timer__svg {
+  transform: scaleX(-1);
+}
+
+.base-timer__circle {
+  fill: none;
+  stroke: none;
+}
+
+.base-timer__path-elapsed {
+  stroke-width: 7px;
+  stroke: grey;
+}
+
+.base-timer__path-remaining {
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  fill-rule: nonzero;
+  stroke: currentColor;
+}
+
+.base-timer__path-remaining.green {
+  color: rgb(65, 184, 131);
+}
+
+.base-timer__path-remaining.orange {
+  color: orange;
+}
+
+.base-timer__path-remaining.red {
+  color: red;
+}
+
+.base-timer__label {
+	position: absolute;
+	
+	/* Size should match the parent container */
+	width: 300px;
+	height: 300px;
+	
+	/* Keep the label aligned to the top */
+	top: 0;
+	
+	/* Create a flexible box that centers content vertically and horizontally */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+  
+	/* Sort of an arbitrary number; adjust to your liking */
+	font-size: 48px;
+  }
+
+/* Added */
+/* Sets the containers height and width */
+.base-timer {
+	position: relative;
+	height: 300px;
+	width: 300px;
+  }
+  
+  /* Removes SVG styling that would hide the time label */
+  .base-timer__circle {
+	fill: none;
+	stroke: none;
+  }
+  
+  /* The SVG path that displays the timer's progress */
+  .base-timer__path-elapsed {
+	stroke-width: 7px;
+	stroke: grey;
+  }
+
+/* Quiz */
+#question {
+	margin-top: 40px;
+	text-align: center;
+}
