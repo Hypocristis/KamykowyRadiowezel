@@ -98,37 +98,81 @@
 							<p><b>Egzamin teoretyczny</b> składa się z formularza kontaktowego oraz serii <b>20 pytań</b>, dotyczących obsługi sprzętu nagłaśniającego. Po zaznaczeniu odpowiedzi, nie ma możliwości powrotu do poprzedniego pytania, dlatego dobrze się zastanów! Na każde pytanie masz <b>20 sekund</b>. Jeżeli nie zaznaczysz żadnej odpowiedzi, system automatycznie przydziela błędny wynik do danego pytania. Po zakończeniu egzaminu reprezentanci radiowęzła skontaktują się z Tobą odnośnie dalszego przebiegu rekrutacji. <b>Powodzenia!</b></p>
 							<ul class="actions">
 								<div style="margin: auto;">
-									<li><a href="#test"><input type="submit" value="Rozpocznij test" class="primary" /></a></li>
+									<li><a href="#test"><input type="submit" value="Rozpocznij test" class="primary" id="rozpTest" /></a></li>
 								</div>
 						</article>
 						
 						<!-- Test -->
 						<article id="test">
-							<div id="app"></div>
-							<div class="quiz-container" id="quiz">
-								<div class="quiz-header">
-								  <h2 id="question">Question is loading...</h2>
-								  <ul>
-									<li>
-									  <input type="radio" name="answer" id="a" class="answer" />
-									  <label for="a" id="a_text">Answer...</label>
-									</li>
-									<li>
-									  <input type="radio" name="answer" id="b" class="answer" />
-									  <label for="b" id="b_text">Answer...</label>
-									</li>
-									<li>
-									  <input type="radio" name="answer" id="c" class="answer" />
-									  <label for="c" id="c_text">Answer...</label>
-									</li>
-									<li>
-									  <input type="radio" name="answer" id="d" class="answer" />
-									  <label for="d" id="d_text">Answer...</label>
-									</li>
-								  </ul>
+						
+							<div id="daneUcznia">
+								<h2>Dane ucznia</h2><br>
+								<form name="formDanychUcznia" id="formDanychUcznia">
+									<label for="imie">Imię:</label>
+									<input type="text" id="imie" name="imie" value="Jan" autocomplete="off" onfocus="this.value=''"><br>
+									<label for="nazwisko">Nazwisko:</label>
+									<input type="text" id="nazwisko" name="nazwisko" value="Kowalski" autocomplete="off" onfocus="this.value=''"><br>
+									<label for="mail">Adres E-Mail:</label>
+									<input type="text" id="mail" name="mail" value="jan.kowalski@gmail.com" autocomplete="off" onfocus="this.value=''"><br>
+									<label for="klasa">Klasa:</label>
+									<select name="rok" id="rok" form="formDanychUcznia" style="margin-bottom: 10px;" autocomplete="off">
+										<option value="1">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="4">4</option>
+									</select>
+									<select name="literka" id="literka" form="formDanychUcznia" autocomplete="off">
+										<option value="A">A</option>
+										<option value="B">B</option>
+										<option value="C">C</option>
+										<option value="D">D</option>
+										<option value="E">E</option>
+										<option value="F">F</option>
+										<option value="G">G</option>
+										<option value="H">H</option>
+										<option value="I">I</option>
+									</select><br>
+									<input id="kontynuuj" type="submit" value="Kontynuuj" style="margin: auto; display: flex;"/>
+								</form>
+							</div>
+						
+							<div id="filmTestowy" style="display: none;">
+									<div class="ytvideo">
+										<h2>Zapoznaj się z materiałem</h2>
+										<iframe src="https://www.youtube.com/embed/Avaa4_702eM?vq=hd1080&autoplay=1&controls=0&disablekb=1"
+											width="560" height="315"
+											title="How To Set Up A Sound System For A Live Event [PA System Setup Tutorial]" frameborder="0"
+											allowfullscreen></iframe><br><br>
+											<input id="timePlaceholder" type="button" value="loading"></input>
+									</div>
+							</div>
+						
+							<div id="testTeoretyczny" style="display: none;">
+								<div class="quiz-container" id="quiz">
+									<div class="quiz-header">
+										<h2 id="question">Wczytywanie pytania...</h2>
+										<ul>
+											<li>
+												<input type="radio" name="answer" id="a" class="answer" autocomplete="off"/>
+												<label for="a" id="a_text">Answer...</label>
+											</li>
+											<li>
+												<input type="radio" name="answer" id="b" class="answer" autocomplete="off"/>
+												<label for="b" id="b_text">Answer...</label>
+											</li>
+											<li>
+												<input type="radio" name="answer" id="c" class="answer" autocomplete="off"/>
+												<label for="c" id="c_text">Answer...</label>
+											</li>
+											<li>
+												<input type="radio" name="answer" id="d" class="answer" autocomplete="off"/>
+												<label for="d" id="d_text">Answer...</label>
+											</li>
+										</ul>
+									</div>
+									<input id="timePlaceholder2" type="button" value="loading" style="margin: auto; display: flex;"></input>
 								</div>
-								<button id="submit" style="margin: auto; display: flex;">Submit</button>
-							  </div>
+							</div>
 						</article>
 
 						<!-- Elements -->
