@@ -398,265 +398,299 @@
 						$main._show(location.hash.substr(1), true);
 					});
 
-					//added
-					const FULL_DASH_ARRAY = 283;
-					const WARNING_THRESHOLD = 10;
-					const ALERT_THRESHOLD = 5;
-					
-					const COLOR_CODES = {
-					  info: {
-						color: "gray"
-					  },
-					  warning: {
-						color: "gray",
-						threshold: WARNING_THRESHOLD
-					  },
-					  alert: {
-						color: "gray",
-						threshold: ALERT_THRESHOLD
-					  }
-					};
-					
-					const TIME_LIMIT = 20;
-					let timePassed = 0;
-					let timeLeft = TIME_LIMIT;
-					let timerInterval = null;
-					let remainingPathColor = COLOR_CODES.info.color;
-					
-					document.getElementById("app").innerHTML = `
-					<div class="base-timer">
-					  <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-						<g class="base-timer__circle">
-						  <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
-						  <path
-							id="base-timer-path-remaining"
-							stroke-dasharray="283"
-							class="base-timer__path-remaining ${remainingPathColor}"
-							d="
-							  M 50, 50
-							  m -45, 0
-							  a 45,45 0 1,0 90,0
-							  a 45,45 0 1,0 -90,0
-							"
-						  ></path>
-						</g>
-					  </svg>
-					  <span id="base-timer-label" class="base-timer__label">${formatTime(
-						timeLeft
-					  )}</span>
-					</div>
-					`;
-					
-					startTimer();
-					
-					function onTimesUp() {
-					  //clearInterval(timerInterval);
-					  const radioButtons = document.querySelectorAll('input[name="answer"]');
-					  for (const radioButton of radioButtons) {
-						if (radioButton.checked) {
-							document.getElementById("submit").click();
-						} else {
-							document.getElementById("a").checked = true;
-							document.getElementById("submit").click();
+			//added
+				document.getElementById('kontynuuj').onclick = function () {
+					let formularz = document.forms['formDanychUcznia'];
+					var zmiennaUcznia = (formularz['imie'].value + ' ' + formularz['nazwisko'].value + ' ' + formularz['rok'].value + ' ' + formularz['literka'].value + ' ' + formularz['mail'].value);
+					document.getElementById('daneUcznia').style.display = "none";
+					document.getElementById('filmTestowy').style.display = "block";
+
+					var videoTime = 488 //488
+
+					var interval = setInterval(function () {
+						var remainingMinutes = Math.floor(videoTime / 60);
+						var remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+						document.getElementById('timePlaceholder').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+						videoTime = videoTime - 1;
+
+						if (videoTime === -1) {
+							clearInterval(interval);
+							document.getElementById('filmTestowy').style.display = "none";
+							document.getElementById('testTeoretyczny').style.display = "block";
+							question1();
 						}
-					}
-					}
-					
-					function startTimer() {
-					  timerInterval = setInterval(() => {
-						timePassed = timePassed += 1;
-						timeLeft = TIME_LIMIT - timePassed;
-						document.getElementById("base-timer-label").innerHTML = formatTime(
-						  timeLeft
-						);
-						setCircleDasharray();
-						setRemainingPathColor(timeLeft);
-					
-						if (timeLeft === 0) {
-						  onTimesUp();
-						}
-					  }, 1000);
-					}
-					
-					function formatTime(time) {
-					  const minutes = Math.floor(time / 60);
-					  let seconds = time % 60;
-					
-					  if (seconds < 10) {
-						seconds = `0${seconds}`;
-					  }
-					
-					  return `${minutes}:${seconds}`;
-					}
-					
-					function setRemainingPathColor(timeLeft) {
-					  const { alert, warning, info } = COLOR_CODES;
-					  if (timeLeft <= alert.threshold) {
-						document
-						  .getElementById("base-timer-path-remaining")
-						  .classList.remove(warning.color);
-						document
-						  .getElementById("base-timer-path-remaining")
-						  .classList.add(alert.color);
-					  } else if (timeLeft <= warning.threshold) {
-						document
-						  .getElementById("base-timer-path-remaining")
-						  .classList.remove(info.color);
-						document
-						  .getElementById("base-timer-path-remaining")
-						  .classList.add(warning.color);
-					  }
-					}
-					
-					function calculateTimeFraction() {
-					  const rawTimeFraction = timeLeft / TIME_LIMIT;
-					  return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
-					}
-					
-					function setCircleDasharray() {
-					  const circleDasharray = `${(
-						calculateTimeFraction() * FULL_DASH_ARRAY
-					  ).toFixed(0)} 283`;
-					  document
-						.getElementById("base-timer-path-remaining")
-						.setAttribute("stroke-dasharray", circleDasharray);
+					}, 1000);
+
+					function question1() {
+						videoTime = 10; //10
+						document.getElementById("question").innerHTML = "Pytanie 1.";
+						document.getElementById("a_text").innerHTML = "Pytanie 1.";
+						document.getElementById("b_text").innerHTML = "Pytanie 1.";
+						document.getElementById("c_text").innerHTML = "Pytanie 1.";
+						document.getElementById("d_text").innerHTML = "Pytanie 1.";
+
+						var interval = setInterval(function () {
+							remainingMinutes = Math.floor(videoTime / 60);
+							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+							videoTime = videoTime - 1;
+
+							if (videoTime === -1) {
+								clearInterval(interval);
+								const answers = document.querySelectorAll('input[name="answer"]')
+								for (const answer of answers) {
+									if (answer.checked) {
+										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+									}
+								}
+								question2();
+							}
+						}, 1000);
 					}
 
-					//Quiz
-					const quizData = [
-						{
-						  question: "Which language runs in a web browser?",
-						  a: "Java",
-						  b: "C",
-						  c: "Python",
-						  d: "JavaScript",
-						  correct: "d"
-						},
-						{
-						  question: "What does CSS stand for?",
-						  a: "Central Style Sheets",
-						  b: "Cascading Style Sheets",
-						  c: "Cascading Simple Sheets",
-						  d: "Cars SUVs Sailboats",
-						  correct: "b"
-						},
-						{
-						  question: "What does HTML stand for?",
-						  a: "Hypertext Markup Language",
-						  b: "Hypertext Markdown Language",
-						  c: "Hyperloop Machine Language",
-						  d: "Helicopters Terminals Motorboats Lamborginis",
-						  correct: "a"
-						},
-						{
-						  question: "What year was JavaScript launched?",
-						  a: "1996",
-						  b: "1995",
-						  c: "1994",
-						  d: "none of the above",
-						  correct: "b"
-						},
-						{
-						  question: "Is javaScript is programming language?",
-						  a: "Yes",
-						  b: "No",
-						  c: "Not sure",
-						  d: "none of the above",
-						  correct: "a"
-						},
-						{
-						  question: "How we can alert hello world?",
-						  a: "alertbox('hello world')",
-						  b: "alert('hello world')",
-						  c: "myalert('hello world')",
-						  d: "none of the above",
-						  correct: "b"
-						},
-						{
-						  question: "HTML is used for?",
-						  a: "Build the Website/App",
-						  b: "Programming",
-						  c: "Hacking",
-						  d: "none of the above",
-						  correct: "a"
-						},
-						{
-						  question: "Best place to add script tag in HTML?",
-						  a: "Head",
-						  b: "Body",
-						  c: "Bottom of the HTML",
-						  d: "Both A and B",
-						  correct: "d"
-						},
-						{
-						  question: "Coding is?",
-						  a: "Art",
-						  b: "Science",
-						  c: "Headache",
-						  d: "Both A and B",
-						  correct: "d"
-						},
-						{
-						  question: "Who's your Saylani",
-						  a: "Sir Kashif suleman",
-						  b: "Sir Rizwan",
-						  c: "None of Them",
-						  d: "Both A and B",
-						  correct: "a"
-						}
-					  ];
-					  
-					  const quiz = document.getElementById("quiz");
-					  const answerElements = document.querySelectorAll(".answer");
-					  const questionElement = document.getElementById("question");
-					  const a_text = document.getElementById("a_text");
-					  const b_text = document.getElementById("b_text");
-					  const c_text = document.getElementById("c_text");
-					  const d_text = document.getElementById("d_text");
-					  const submitButton = document.getElementById("submit");
-					  
-					  let currentQuiz = 0;
-					  let score = 0;
-					  
-					  const deselectAnswers = () => {
-						answerElements.forEach((answer) => (answer.checked = false));
-					  };
-					  
-					  const getSelected = () => {
-						let answer;
-						answerElements.forEach((answerElement) => {
-						  if (answerElement.checked) answer = answerElement.id;
-						});
-						return answer;
-					  };
-					  
-					  const loadQuiz = () => {
-						deselectAnswers();
-						const currentQuizData = quizData[currentQuiz];
-						questionElement.innerText = currentQuizData.question;
-						a_text.innerText = currentQuizData.a;
-						b_text.innerText = currentQuizData.b;
-						c_text.innerText = currentQuizData.c;
-						d_text.innerText = currentQuizData.d;
-					  };
-					  
-					  loadQuiz();
-					  
-					  submitButton.addEventListener("click", () => {
-						const answer = getSelected();
-						if (answer) {
-						  if (answer === quizData[currentQuiz].correct) score++;
-						  currentQuiz++;
-						  if (currentQuiz < quizData.length) loadQuiz();
-						  else {
-							quiz.innerHTML = `
-								  <h2>You answered ${score}/${quizData.length} questions correctly</h2>
-								  <button onclick="history.go(0)" style="margin: auto; display: flex;">Play Again</button>
-							  `;
-						  }
-						}
-						timeLeft = 20;
-						timePassed = 0;
-					  });
+					function question2() {
+						videoTime = 10;
+						document.getElementById("question").innerHTML = "Pytanie 2.";
+						document.getElementById("a_text").innerHTML = "Pytanie 2.";
+						document.getElementById("b_text").innerHTML = "Pytanie 2.";
+						document.getElementById("c_text").innerHTML = "Pytanie 2.";
+						document.getElementById("d_text").innerHTML = "Pytanie 2.";
 
+						var interval = setInterval(function () {
+							remainingMinutes = Math.floor(videoTime / 60);
+							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+							videoTime = videoTime - 1;
+
+							if (videoTime === -1) {
+								clearInterval(interval);
+								const answers = document.querySelectorAll('input[name="answer"]')
+								for (const answer of answers) {
+									if (answer.checked) {
+										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+									}
+								}
+								question3();
+							}
+						}, 1000);
+					}
+					
+					function question3() {
+						videoTime = 10;
+						document.getElementById("question").innerHTML = "Pytanie 3.";
+						document.getElementById("a_text").innerHTML = "Pytanie 3.";
+						document.getElementById("b_text").innerHTML = "Pytanie 3.";
+						document.getElementById("c_text").innerHTML = "Pytanie 3.";
+						document.getElementById("d_text").innerHTML = "Pytanie 3.";
+
+						var interval = setInterval(function () {
+							remainingMinutes = Math.floor(videoTime / 60);
+							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+							videoTime = videoTime - 1;
+
+							if (videoTime === -1) {
+								clearInterval(interval);
+								const answers = document.querySelectorAll('input[name="answer"]')
+								for (const answer of answers) {
+									if (answer.checked) {
+										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+									}
+								}
+								question4();
+							}
+						}, 1000);
+					}
+
+					function question4() {
+						videoTime = 10;
+						document.getElementById("question").innerHTML = "Pytanie 4.";
+						document.getElementById("a_text").innerHTML = "Pytanie 4.";
+						document.getElementById("b_text").innerHTML = "Pytanie 4.";
+						document.getElementById("c_text").innerHTML = "Pytanie 4.";
+						document.getElementById("d_text").innerHTML = "Pytanie 4.";
+
+						var interval = setInterval(function () {
+							remainingMinutes = Math.floor(videoTime / 60);
+							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+							videoTime = videoTime - 1;
+
+							if (videoTime === -1) {
+								clearInterval(interval);
+								const answers = document.querySelectorAll('input[name="answer"]')
+								for (const answer of answers) {
+									if (answer.checked) {
+										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+									}
+								}
+								question5();
+							}
+						}, 1000);
+					}
+
+					function question5() {
+						videoTime = 10;
+						document.getElementById("question").innerHTML = "Pytanie 5.";
+						document.getElementById("a_text").innerHTML = "Pytanie 5.";
+						document.getElementById("b_text").innerHTML = "Pytanie 5.";
+						document.getElementById("c_text").innerHTML = "Pytanie 5.";
+						document.getElementById("d_text").innerHTML = "Pytanie 5.";
+
+						var interval = setInterval(function () {
+							remainingMinutes = Math.floor(videoTime / 60);
+							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+							videoTime = videoTime - 1;
+
+							if (videoTime === -1) {
+								clearInterval(interval);
+								const answers = document.querySelectorAll('input[name="answer"]')
+								for (const answer of answers) {
+									if (answer.checked) {
+										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+									}
+								}
+								question6();
+							}
+						}, 1000);
+					}
+
+					function question6() {
+						videoTime = 10;
+						document.getElementById("question").innerHTML = "Pytanie 6.";
+						document.getElementById("a_text").innerHTML = "Pytanie 6.";
+						document.getElementById("b_text").innerHTML = "Pytanie 6.";
+						document.getElementById("c_text").innerHTML = "Pytanie 6.";
+						document.getElementById("d_text").innerHTML = "Pytanie 6.";
+
+						var interval = setInterval(function () {
+							remainingMinutes = Math.floor(videoTime / 60);
+							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+							videoTime = videoTime - 1;
+
+							if (videoTime === -1) {
+								clearInterval(interval);
+								const answers = document.querySelectorAll('input[name="answer"]')
+								for (const answer of answers) {
+									if (answer.checked) {
+										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+									}
+								}
+								question7();
+							}
+						}, 1000);
+					}
+
+					function question7() {
+						videoTime = 10;
+						document.getElementById("question").innerHTML = "Pytanie 7.";
+						document.getElementById("a_text").innerHTML = "Pytanie 7.";
+						document.getElementById("b_text").innerHTML = "Pytanie 7.";
+						document.getElementById("c_text").innerHTML = "Pytanie 7.";
+						document.getElementById("d_text").innerHTML = "Pytanie 7.";
+
+						var interval = setInterval(function () {
+							remainingMinutes = Math.floor(videoTime / 60);
+							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+							videoTime = videoTime - 1;
+
+							if (videoTime === -1) {
+								clearInterval(interval);
+								const answers = document.querySelectorAll('input[name="answer"]')
+								for (const answer of answers) {
+									if (answer.checked) {
+										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+									}
+								}
+								question8();
+							}
+						}, 1000);
+					}
+
+					function question8() {
+						videoTime = 10;
+						document.getElementById("question").innerHTML = "Pytanie 8.";
+						document.getElementById("a_text").innerHTML = "Pytanie 8.";
+						document.getElementById("b_text").innerHTML = "Pytanie 8.";
+						document.getElementById("c_text").innerHTML = "Pytanie 8.";
+						document.getElementById("d_text").innerHTML = "Pytanie 8.";
+
+						var interval = setInterval(function () {
+							remainingMinutes = Math.floor(videoTime / 60);
+							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+							videoTime = videoTime - 1;
+
+							if (videoTime === -1) {
+								clearInterval(interval);
+								const answers = document.querySelectorAll('input[name="answer"]')
+								for (const answer of answers) {
+									if (answer.checked) {
+										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+									}
+								}
+								question9();
+							}
+						}, 1000);
+					}
+
+					function question9() {
+						videoTime = 10;
+						document.getElementById("question").innerHTML = "Pytanie 9.";
+						document.getElementById("a_text").innerHTML = "Pytanie 9.";
+						document.getElementById("b_text").innerHTML = "Pytanie 9.";
+						document.getElementById("c_text").innerHTML = "Pytanie 9.";
+						document.getElementById("d_text").innerHTML = "Pytanie 9.";
+
+						var interval = setInterval(function () {
+							remainingMinutes = Math.floor(videoTime / 60);
+							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+							videoTime = videoTime - 1;
+
+							if (videoTime === -1) {
+								clearInterval(interval);
+								const answers = document.querySelectorAll('input[name="answer"]')
+								for (const answer of answers) {
+									if (answer.checked) {
+										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+									}
+								}
+								question10();
+							}
+						}, 1000);
+					}
+
+					function question10() {
+						videoTime = 10;
+						document.getElementById("question").innerHTML = "Pytanie 10.";
+						document.getElementById("a_text").innerHTML = "Pytanie 10.";
+						document.getElementById("b_text").innerHTML = "Pytanie 10.";
+						document.getElementById("c_text").innerHTML = "Pytanie 10.";
+						document.getElementById("d_text").innerHTML = "Pytanie 10.";
+
+						var interval = setInterval(function () {
+							remainingMinutes = Math.floor(videoTime / 60);
+							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+							videoTime = videoTime - 1;
+
+							if (videoTime === -1) {
+								clearInterval(interval);
+								const answers = document.querySelectorAll('input[name="answer"]')
+								for (const answer of answers) {
+									if (answer.checked) {
+										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+									}
+								}
+								alert(zmiennaUcznia);
+							}
+						}, 1000);
+					}
+
+
+				};	
 })(jQuery);
