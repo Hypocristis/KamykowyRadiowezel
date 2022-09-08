@@ -400,297 +400,303 @@
 
 			//added
 				document.getElementById('kontynuuj').onclick = function () {
-					let formularz = document.forms['formDanychUcznia'];
-					var zmiennaUcznia = (formularz['imie'].value + ' ' + formularz['nazwisko'].value + ' ' + formularz['rok'].value + ' ' + formularz['literka'].value + ' ' + formularz['mail'].value);
-					document.getElementById('daneUcznia').style.display = "none";
-					document.getElementById('filmTestowy').style.display = "block";
+					if (document.getElementById('imie').value != 'John' && document.getElementById('nazwisko').value != 'Snurr' && document.getElementById('mail').value != 'john.snurr@gmail.com' && document.getElementById('imie').value != '' && document.getElementById('nazwisko').value != '' && document.getElementById('mail').value != '') {
+						let formularz = document.forms['formDanychUcznia'];
+						var zmiennaUcznia = (formularz['imie'].value + ' ' + formularz['nazwisko'].value + ' ' + formularz['rok'].value + ' ' + formularz['literka'].value + ' ' + formularz['mail'].value);
+						document.getElementById('daneUcznia').style.display = "none";
+						document.getElementById('filmTestowy').style.display = "block";
 
-					var videoTime = 488 //488
+						var videoTime = 2 //488
 
-					var interval = setInterval(function () {
-						var remainingMinutes = Math.floor(videoTime / 60);
-						var remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
-						document.getElementById('timePlaceholder').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
-						videoTime = videoTime - 1;
+						var interval = setInterval(function () {
+							var remainingMinutes = Math.floor(videoTime / 60);
+							var remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+							document.getElementById('timePlaceholder').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+							videoTime = videoTime - 1;
 
-						if (videoTime === -1) {
-							clearInterval(interval);
-							document.getElementById('filmTestowy').style.display = "none";
-							document.getElementById('testTeoretyczny').style.display = "block";
-							question1();
+							if (videoTime === -1) {
+								clearInterval(interval);
+								document.getElementById('filmTestowy').style.display = "none";
+								document.getElementById('testTeoretyczny').style.display = "block";
+								question1();
+							}
+						}, 1000);
+
+						function question1() {
+							videoTime = 1; //10
+							document.getElementById("question").innerHTML = "Gdzie nalepiej umieścić mikrofony, aby uniknąć sprzężenia zwrotnego?";
+							document.getElementById("a_text").innerHTML = "Z przodu głośnika.";
+							document.getElementById("b_text").innerHTML = "Z tyłu głośnika.";
+							document.getElementById("c_text").innerHTML = "Położenie mikrofonu nie wpływa na sprzężenie zwrotne.";
+							document.getElementById("d_text").innerHTML = "Skierowane prosto w membranę głośnika.";
+
+							var interval = setInterval(function () {
+								remainingMinutes = Math.floor(videoTime / 60);
+								remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+								document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+								videoTime = videoTime - 1;
+
+								if (videoTime === -1) {
+									clearInterval(interval);
+									const answers = document.querySelectorAll('input[name="answer"]')
+									for (const answer of answers) {
+										if (answer.checked) {
+											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+										}
+									}
+									question2();
+								}
+							}, 1000);
 						}
-					}, 1000);
 
-					function question1() {
-						videoTime = 10; //10
-						document.getElementById("question").innerHTML = "Pytanie 1.";
-						document.getElementById("a_text").innerHTML = "Pytanie 1.";
-						document.getElementById("b_text").innerHTML = "Pytanie 1.";
-						document.getElementById("c_text").innerHTML = "Pytanie 1.";
-						document.getElementById("d_text").innerHTML = "Pytanie 1.";
+						function question2() {
+							videoTime = 1;
+							document.getElementById("question").innerHTML = "Jak należy zabezpieczyć kable przed potknięciem?";
+							document.getElementById("a_text").innerHTML = "Przykleić je taśmą typu gaffer do podłogi.";
+							document.getElementById("b_text").innerHTML = "Układać je blisko dolnej krawędzi ściany.";
+							document.getElementById("c_text").innerHTML = "Zwinąć spiralnie wszystkie kable (zasilanie i sygnał).";
+							document.getElementById("d_text").innerHTML = "Zawiesić je na wysokości wzroku.";
 
-						var interval = setInterval(function () {
-							remainingMinutes = Math.floor(videoTime / 60);
-							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
-							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
-							videoTime = videoTime - 1;
+							var interval = setInterval(function () {
+								remainingMinutes = Math.floor(videoTime / 60);
+								remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+								document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+								videoTime = videoTime - 1;
 
-							if (videoTime === -1) {
-								clearInterval(interval);
-								const answers = document.querySelectorAll('input[name="answer"]')
-								for (const answer of answers) {
-									if (answer.checked) {
-										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+								if (videoTime === -1) {
+									clearInterval(interval);
+									const answers = document.querySelectorAll('input[name="answer"]')
+									for (const answer of answers) {
+										if (answer.checked) {
+											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+										}
 									}
+									question3();
 								}
-								question2();
-							}
-						}, 1000);
-					}
+							}, 1000);
+						}
 
-					function question2() {
-						videoTime = 10;
-						document.getElementById("question").innerHTML = "Pytanie 2.";
-						document.getElementById("a_text").innerHTML = "Pytanie 2.";
-						document.getElementById("b_text").innerHTML = "Pytanie 2.";
-						document.getElementById("c_text").innerHTML = "Pytanie 2.";
-						document.getElementById("d_text").innerHTML = "Pytanie 2.";
+						function question3() {
+							videoTime = 1;
+							document.getElementById("question").innerHTML = "Czy odłączenie zasilacza jest równoznaczne z wyłączeniem go?";
+							document.getElementById("a_text").innerHTML = "Tak. Odłączenie zasilacza pełni tą samą rolę co wbudowany przełącznik on/off";
+							document.getElementById("b_text").innerHTML = "Tak. Kożystamy z takiej opcji, gdy przypadkowo włączymy muzykę.";
+							document.getElementById("c_text").innerHTML = "Tak. Jedyna różnica to brak animacji wyłączania.";
+							document.getElementById("d_text").innerHTML = "Nie.";
 
-						var interval = setInterval(function () {
-							remainingMinutes = Math.floor(videoTime / 60);
-							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
-							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
-							videoTime = videoTime - 1;
+							var interval = setInterval(function () {
+								remainingMinutes = Math.floor(videoTime / 60);
+								remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+								document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+								videoTime = videoTime - 1;
 
-							if (videoTime === -1) {
-								clearInterval(interval);
-								const answers = document.querySelectorAll('input[name="answer"]')
-								for (const answer of answers) {
-									if (answer.checked) {
-										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+								if (videoTime === -1) {
+									clearInterval(interval);
+									const answers = document.querySelectorAll('input[name="answer"]')
+									for (const answer of answers) {
+										if (answer.checked) {
+											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+										}
 									}
+									question4();
 								}
-								question3();
-							}
-						}, 1000);
-					}
-					
-					function question3() {
-						videoTime = 10;
-						document.getElementById("question").innerHTML = "Pytanie 3.";
-						document.getElementById("a_text").innerHTML = "Pytanie 3.";
-						document.getElementById("b_text").innerHTML = "Pytanie 3.";
-						document.getElementById("c_text").innerHTML = "Pytanie 3.";
-						document.getElementById("d_text").innerHTML = "Pytanie 3.";
+							}, 1000);
+						}
 
-						var interval = setInterval(function () {
-							remainingMinutes = Math.floor(videoTime / 60);
-							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
-							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
-							videoTime = videoTime - 1;
+						function question4() {
+							videoTime = 1;
+							document.getElementById("question").innerHTML = "Czy mikrofon pojemnościowy (condencer mic) potrzebuje dodatkowego zasilania?";
+							document.getElementById("a_text").innerHTML = "Tak, potrzebuje dodatkowego zasilania +48V DC.";
+							document.getElementById("b_text").innerHTML = "Nie, mikser zawsze zasila wszystkie mikrofony.";
+							document.getElementById("c_text").innerHTML = "Tak, potrzebuje dodatkowego zasilania 12V.";
+							document.getElementById("d_text").innerHTML = "Nie, tylko mikrofony dynamiczne potrzebują dodatkowego zasilania.";
 
-							if (videoTime === -1) {
-								clearInterval(interval);
-								const answers = document.querySelectorAll('input[name="answer"]')
-								for (const answer of answers) {
-									if (answer.checked) {
-										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+							var interval = setInterval(function () {
+								remainingMinutes = Math.floor(videoTime / 60);
+								remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+								document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+								videoTime = videoTime - 1;
+
+								if (videoTime === -1) {
+									clearInterval(interval);
+									const answers = document.querySelectorAll('input[name="answer"]')
+									for (const answer of answers) {
+										if (answer.checked) {
+											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+										}
 									}
+									question5();
 								}
-								question4();
-							}
-						}, 1000);
-					}
+							}, 1000);
+						}
 
-					function question4() {
-						videoTime = 10;
-						document.getElementById("question").innerHTML = "Pytanie 4.";
-						document.getElementById("a_text").innerHTML = "Pytanie 4.";
-						document.getElementById("b_text").innerHTML = "Pytanie 4.";
-						document.getElementById("c_text").innerHTML = "Pytanie 4.";
-						document.getElementById("d_text").innerHTML = "Pytanie 4.";
+						function question5() {
+							videoTime = 1;
+							document.getElementById("question").innerHTML = "Do czego służy pokrętło pre-amp gain?";
+							document.getElementById("a_text").innerHTML = "Do wzmacniania sygnału wchodzącego do konsoli.";
+							document.getElementById("b_text").innerHTML = "Do wzmacniania sygnału wychodzącego z konsoli.";
+							document.getElementById("c_text").innerHTML = "Do zmiany częstotliwości dzwięku na danym kanale.";
+							document.getElementById("d_text").innerHTML = "Nic nie robi.";
 
-						var interval = setInterval(function () {
-							remainingMinutes = Math.floor(videoTime / 60);
-							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
-							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
-							videoTime = videoTime - 1;
+							var interval = setInterval(function () {
+								remainingMinutes = Math.floor(videoTime / 60);
+								remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+								document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+								videoTime = videoTime - 1;
 
-							if (videoTime === -1) {
-								clearInterval(interval);
-								const answers = document.querySelectorAll('input[name="answer"]')
-								for (const answer of answers) {
-									if (answer.checked) {
-										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+								if (videoTime === -1) {
+									clearInterval(interval);
+									const answers = document.querySelectorAll('input[name="answer"]')
+									for (const answer of answers) {
+										if (answer.checked) {
+											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+										}
 									}
+									question6();
 								}
-								question5();
-							}
-						}, 1000);
-					}
+							}, 1000);
+						}
 
-					function question5() {
-						videoTime = 10;
-						document.getElementById("question").innerHTML = "Pytanie 5.";
-						document.getElementById("a_text").innerHTML = "Pytanie 5.";
-						document.getElementById("b_text").innerHTML = "Pytanie 5.";
-						document.getElementById("c_text").innerHTML = "Pytanie 5.";
-						document.getElementById("d_text").innerHTML = "Pytanie 5.";
+						function question6() {
+							videoTime = 1;
+							document.getElementById("question").innerHTML = "Co należy zrobić, jeżeli pojawi się efekt sprzężenia zwrotnego?";
+							document.getElementById("a_text").innerHTML = "Natychmiast wyłączyć zasilacz!";
+							document.getElementById("b_text").innerHTML = "Natychmiast wyłączić mikser!";
+							document.getElementById("c_text").innerHTML = "Natychmiast wyciszyć kanał mikrofonu!";
+							document.getElementById("d_text").innerHTML = "Natychmiast zmiejszyć poziom bassu na mikserze.";
 
-						var interval = setInterval(function () {
-							remainingMinutes = Math.floor(videoTime / 60);
-							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
-							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
-							videoTime = videoTime - 1;
+							var interval = setInterval(function () {
+								remainingMinutes = Math.floor(videoTime / 60);
+								remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+								document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+								videoTime = videoTime - 1;
 
-							if (videoTime === -1) {
-								clearInterval(interval);
-								const answers = document.querySelectorAll('input[name="answer"]')
-								for (const answer of answers) {
-									if (answer.checked) {
-										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+								if (videoTime === -1) {
+									clearInterval(interval);
+									const answers = document.querySelectorAll('input[name="answer"]')
+									for (const answer of answers) {
+										if (answer.checked) {
+											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+										}
 									}
+									question7();
 								}
-								question6();
-							}
-						}, 1000);
-					}
+							}, 1000);
+						}
 
-					function question6() {
-						videoTime = 10;
-						document.getElementById("question").innerHTML = "Pytanie 6.";
-						document.getElementById("a_text").innerHTML = "Pytanie 6.";
-						document.getElementById("b_text").innerHTML = "Pytanie 6.";
-						document.getElementById("c_text").innerHTML = "Pytanie 6.";
-						document.getElementById("d_text").innerHTML = "Pytanie 6.";
+						function question7() {
+							videoTime = 1;
+							document.getElementById("question").innerHTML = "Do czego może służyć wyjście AUX z konsoli?";
+							document.getElementById("a_text").innerHTML = "Do zmiany cyfrowych efektów na analogowej konsoli.";
+							document.getElementById("b_text").innerHTML = "Do puszczania muzyki z głównych głośników.";
+							document.getElementById("c_text").innerHTML = "Do podłączenia głośników lub słuchawek odsłuchowych.";
+							document.getElementById("d_text").innerHTML = "Nie ma takiego wyjścia.";
 
-						var interval = setInterval(function () {
-							remainingMinutes = Math.floor(videoTime / 60);
-							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
-							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
-							videoTime = videoTime - 1;
+							var interval = setInterval(function () {
+								remainingMinutes = Math.floor(videoTime / 60);
+								remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+								document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+								videoTime = videoTime - 1;
 
-							if (videoTime === -1) {
-								clearInterval(interval);
-								const answers = document.querySelectorAll('input[name="answer"]')
-								for (const answer of answers) {
-									if (answer.checked) {
-										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+								if (videoTime === -1) {
+									clearInterval(interval);
+									const answers = document.querySelectorAll('input[name="answer"]')
+									for (const answer of answers) {
+										if (answer.checked) {
+											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+										}
 									}
+									question8();
 								}
-								question7();
-							}
-						}, 1000);
-					}
+							}, 1000);
+						}
 
-					function question7() {
-						videoTime = 10;
-						document.getElementById("question").innerHTML = "Pytanie 7.";
-						document.getElementById("a_text").innerHTML = "Pytanie 7.";
-						document.getElementById("b_text").innerHTML = "Pytanie 7.";
-						document.getElementById("c_text").innerHTML = "Pytanie 7.";
-						document.getElementById("d_text").innerHTML = "Pytanie 7.";
+						function question8() {
+							videoTime = 1;
+							document.getElementById("question").innerHTML = "Czy kable DMX / XLR mogą być używane zamiennie?";
+							document.getElementById("a_text").innerHTML = "Nie, taka zamiana nie zadziała.";
+							document.getElementById("b_text").innerHTML = "Tak, są one identyczne.";
+							document.getElementById("c_text").innerHTML = "Nie, wtyczka nie będzie pasować.";
+							document.getElementById("d_text").innerHTML = "Tak, ale nie jest to zalecane.";
 
-						var interval = setInterval(function () {
-							remainingMinutes = Math.floor(videoTime / 60);
-							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
-							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
-							videoTime = videoTime - 1;
+							var interval = setInterval(function () {
+								remainingMinutes = Math.floor(videoTime / 60);
+								remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+								document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+								videoTime = videoTime - 1;
 
-							if (videoTime === -1) {
-								clearInterval(interval);
-								const answers = document.querySelectorAll('input[name="answer"]')
-								for (const answer of answers) {
-									if (answer.checked) {
-										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+								if (videoTime === -1) {
+									clearInterval(interval);
+									const answers = document.querySelectorAll('input[name="answer"]')
+									for (const answer of answers) {
+										if (answer.checked) {
+											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+										}
 									}
+									question9();
 								}
-								question8();
-							}
-						}, 1000);
-					}
+							}, 1000);
+						}
 
-					function question8() {
-						videoTime = 10;
-						document.getElementById("question").innerHTML = "Pytanie 8.";
-						document.getElementById("a_text").innerHTML = "Pytanie 8.";
-						document.getElementById("b_text").innerHTML = "Pytanie 8.";
-						document.getElementById("c_text").innerHTML = "Pytanie 8.";
-						document.getElementById("d_text").innerHTML = "Pytanie 8.";
+						function question9() {
+							videoTime = 1;
+							document.getElementById("question").innerHTML = "Jakie są odpowiedzialności członków zespołu radiowęzła?";
+							document.getElementById("a_text").innerHTML = "Muzyka na przerwach, organizacja techniczna wydarzeń, oświetlenie.";
+							document.getElementById("b_text").innerHTML = "Muzyka na przerwach, organizacja techniczna wydarzeń.";
+							document.getElementById("c_text").innerHTML = "Muzyka na przerwach.";
+							document.getElementById("d_text").innerHTML = "Nie mają obowiazków, liczą się tylko chęci.";
 
-						var interval = setInterval(function () {
-							remainingMinutes = Math.floor(videoTime / 60);
-							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
-							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
-							videoTime = videoTime - 1;
+							var interval = setInterval(function () {
+								remainingMinutes = Math.floor(videoTime / 60);
+								remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+								document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+								videoTime = videoTime - 1;
 
-							if (videoTime === -1) {
-								clearInterval(interval);
-								const answers = document.querySelectorAll('input[name="answer"]')
-								for (const answer of answers) {
-									if (answer.checked) {
-										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+								if (videoTime === -1) {
+									clearInterval(interval);
+									const answers = document.querySelectorAll('input[name="answer"]')
+									for (const answer of answers) {
+										if (answer.checked) {
+											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+										}
 									}
+									question10();
 								}
-								question9();
-							}
-						}, 1000);
-					}
+							}, 1000);
+						}
 
-					function question9() {
-						videoTime = 10;
-						document.getElementById("question").innerHTML = "Pytanie 9.";
-						document.getElementById("a_text").innerHTML = "Pytanie 9.";
-						document.getElementById("b_text").innerHTML = "Pytanie 9.";
-						document.getElementById("c_text").innerHTML = "Pytanie 9.";
-						document.getElementById("d_text").innerHTML = "Pytanie 9.";
+						function question10() {
+							videoTime = 1;
+							document.getElementById("question").innerHTML = "Czy członkowie radiowęzła mogą być poproszeni o pracę poza godzinami nauki?";
+							document.getElementById("a_text").innerHTML = "Nie, pracują tylko na przerwach.";
+							document.getElementById("b_text").innerHTML = "Nie, pracują tylko od 8 do 16";
+							document.getElementById("c_text").innerHTML = "Tak, pracują zawsze kiedy jest taka potrzeba.";
+							document.getElementById("d_text").innerHTML = "Tak, pracują zawsze kiedy jest taka potrzeba, nawet w wakacje!";
 
-						var interval = setInterval(function () {
-							remainingMinutes = Math.floor(videoTime / 60);
-							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
-							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
-							videoTime = videoTime - 1;
+							var interval = setInterval(function () {
+								remainingMinutes = Math.floor(videoTime / 60);
+								remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
+								document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
+								videoTime = videoTime - 1;
 
-							if (videoTime === -1) {
-								clearInterval(interval);
-								const answers = document.querySelectorAll('input[name="answer"]')
-								for (const answer of answers) {
-									if (answer.checked) {
-										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+								if (videoTime === -1) {
+									clearInterval(interval);
+									const answers = document.querySelectorAll('input[name="answer"]')
+									for (const answer of answers) {
+										if (answer.checked) {
+											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
+										}
 									}
+									alert(zmiennaUcznia);
 								}
-								question10();
-							}
-						}, 1000);
+							}, 1000);
+						}
+					} else {
+						alert('Wpisz poprawne dane kontaktowe.');
 					}
-
-					function question10() {
-						videoTime = 10;
-						document.getElementById("question").innerHTML = "Pytanie 10.";
-						document.getElementById("a_text").innerHTML = "Pytanie 10.";
-						document.getElementById("b_text").innerHTML = "Pytanie 10.";
-						document.getElementById("c_text").innerHTML = "Pytanie 10.";
-						document.getElementById("d_text").innerHTML = "Pytanie 10.";
-
-						var interval = setInterval(function () {
-							remainingMinutes = Math.floor(videoTime / 60);
-							remainingSeconds = Math.floor(videoTime - remainingMinutes * 60);
-							document.getElementById('timePlaceholder2').setAttribute('value', remainingMinutes + ' min ' + remainingSeconds + " s");
-							videoTime = videoTime - 1;
-
-							if (videoTime === -1) {
-								clearInterval(interval);
-								const answers = document.querySelectorAll('input[name="answer"]')
-								for (const answer of answers) {
-									if (answer.checked) {
-										zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
-									}
-								}
-								alert(zmiennaUcznia);
-							}
-						}, 1000);
-					}
-
-
-				};	
+				};
+				
+				var form = document.getElementById("formDanychUcznia");
+				function handleForm(event) { event.preventDefault(); }
+				form.addEventListener('submit', handleForm);
 })(jQuery);
