@@ -406,7 +406,7 @@
 						document.getElementById('daneUcznia').style.display = "none";
 						document.getElementById('filmTestowy').style.display = "block";
 
-						var videoTime = 2 //488
+						var videoTime = 20 //488
 
 						var interval = setInterval(function () {
 							var remainingMinutes = Math.floor(videoTime / 60);
@@ -423,7 +423,7 @@
 						}, 1000);
 
 						function question1() {
-							videoTime = 1; //10
+							videoTime = 10; //10
 							document.getElementById("question").innerHTML = "Gdzie nalepiej umieścić mikrofony, aby uniknąć sprzężenia zwrotnego?";
 							document.getElementById("a_text").innerHTML = "Z przodu głośnika.";
 							document.getElementById("b_text").innerHTML = "Z tyłu głośnika.";
@@ -450,7 +450,7 @@
 						}
 
 						function question2() {
-							videoTime = 1;
+							videoTime = 10;
 							document.getElementById("question").innerHTML = "Jak należy zabezpieczyć kable przed potknięciem?";
 							document.getElementById("a_text").innerHTML = "Przykleić je taśmą typu gaffer do podłogi.";
 							document.getElementById("b_text").innerHTML = "Układać je blisko dolnej krawędzi ściany.";
@@ -477,7 +477,7 @@
 						}
 
 						function question3() {
-							videoTime = 1;
+							videoTime = 10;
 							document.getElementById("question").innerHTML = "Czy odłączenie zasilacza jest równoznaczne z wyłączeniem go?";
 							document.getElementById("a_text").innerHTML = "Tak. Odłączenie zasilacza pełni tą samą rolę co wbudowany przełącznik on/off";
 							document.getElementById("b_text").innerHTML = "Tak. Kożystamy z takiej opcji, gdy przypadkowo włączymy muzykę.";
@@ -504,7 +504,7 @@
 						}
 
 						function question4() {
-							videoTime = 1;
+							videoTime = 10;
 							document.getElementById("question").innerHTML = "Czy mikrofon pojemnościowy (condencer mic) potrzebuje dodatkowego zasilania?";
 							document.getElementById("a_text").innerHTML = "Tak, potrzebuje dodatkowego zasilania +48V DC.";
 							document.getElementById("b_text").innerHTML = "Nie, mikser zawsze zasila wszystkie mikrofony.";
@@ -531,7 +531,7 @@
 						}
 
 						function question5() {
-							videoTime = 1;
+							videoTime = 10;
 							document.getElementById("question").innerHTML = "Do czego służy pokrętło pre-amp gain?";
 							document.getElementById("a_text").innerHTML = "Do wzmacniania sygnału wchodzącego do konsoli.";
 							document.getElementById("b_text").innerHTML = "Do wzmacniania sygnału wychodzącego z konsoli.";
@@ -558,7 +558,7 @@
 						}
 
 						function question6() {
-							videoTime = 1;
+							videoTime = 10;
 							document.getElementById("question").innerHTML = "Co należy zrobić, jeżeli pojawi się efekt sprzężenia zwrotnego?";
 							document.getElementById("a_text").innerHTML = "Natychmiast wyłączyć zasilacz!";
 							document.getElementById("b_text").innerHTML = "Natychmiast wyłączić mikser!";
@@ -585,7 +585,7 @@
 						}
 
 						function question7() {
-							videoTime = 1;
+							videoTime = 10;
 							document.getElementById("question").innerHTML = "Do czego może służyć wyjście AUX z konsoli?";
 							document.getElementById("a_text").innerHTML = "Do zmiany cyfrowych efektów na analogowej konsoli.";
 							document.getElementById("b_text").innerHTML = "Do puszczania muzyki z głównych głośników.";
@@ -612,7 +612,7 @@
 						}
 
 						function question8() {
-							videoTime = 1;
+							videoTime = 10;
 							document.getElementById("question").innerHTML = "Czy kable DMX / XLR mogą być używane zamiennie?";
 							document.getElementById("a_text").innerHTML = "Nie, taka zamiana nie zadziała.";
 							document.getElementById("b_text").innerHTML = "Tak, są one identyczne.";
@@ -639,7 +639,7 @@
 						}
 
 						function question9() {
-							videoTime = 1;
+							videoTime = 10;
 							document.getElementById("question").innerHTML = "Jakie są odpowiedzialności członków zespołu radiowęzła?";
 							document.getElementById("a_text").innerHTML = "Muzyka na przerwach, organizacja techniczna wydarzeń, oświetlenie.";
 							document.getElementById("b_text").innerHTML = "Muzyka na przerwach, organizacja techniczna wydarzeń.";
@@ -666,7 +666,7 @@
 						}
 
 						function question10() {
-							videoTime = 1;
+							videoTime = 10;
 							document.getElementById("question").innerHTML = "Czy członkowie radiowęzła mogą być poproszeni o pracę poza godzinami nauki?";
 							document.getElementById("a_text").innerHTML = "Nie, pracują tylko na przerwach.";
 							document.getElementById("b_text").innerHTML = "Nie, pracują tylko od 8 do 16";
