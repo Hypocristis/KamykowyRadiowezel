@@ -140,7 +140,7 @@
 									<div class="ytvideo">
 										<h2>Zapoznaj się z materiałem</h2>
 										<iframe src="https://www.youtube.com/embed/Avaa4_702eM?vq=hd1080&autoplay=1&controls=0&disablekb=1"
-											width="560" height="315"
+											width="100%" height="315"
 											title="How To Set Up A Sound System For A Live Event [PA System Setup Tutorial]" frameborder="0"
 											allowfullscreen></iframe><br><br>
 											<input id="timePlaceholder" type="button" value="loading"></input>
@@ -168,13 +168,26 @@
 												<input type="radio" name="answer" id="d" class="answer" autocomplete="off"/>
 												<label for="d" id="d_text">Answer...</label>
 											</li>
+											<li style="display: none;">
+												<input type="radio" name="answer" id="x" class="answer" autocomplete="off"/>
+											</li>
 										</ul>
 									</div>
 									<input id="timePlaceholder2" type="button" value="loading" style="margin: auto; display: flex;"></input>
 								</div>
 							</div>
-						</article>
 
+							<div id="przeniesienieDanych" style="display: none;">
+							
+								<h2> Przenieś szyfr do formularza google, aby zakończć egzamin. </h2>
+								<p>Poniżej znajduje się szyfr, który należy przekopiować do formularza Google.</p>
+								<input type="text" id="szyfr" value="Wczytywanie..." readonly>
+								<br>
+								<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdeiYtm4qxR6kiTlPwOVUpe82gcfNVQoO-ZVi9UdPdRgTib7A/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Ładuję…</iframe>
+
+							</div>
+						</article>
+						
 						<!-- Elements -->
 							<article id="elements">
 								<h2 class="major">Elements</h2>
