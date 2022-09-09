@@ -406,7 +406,9 @@
 						document.getElementById('daneUcznia').style.display = "none";
 						document.getElementById('filmTestowy').style.display = "block";
 
-						var videoTime = 20 //488
+						document.getElementById("x").checked = true; //pierwsze usuniecie radia
+
+						var videoTime = 10; //488
 
 						var interval = setInterval(function () {
 							var remainingMinutes = Math.floor(videoTime / 60);
@@ -423,7 +425,8 @@
 						}, 1000);
 
 						function question1() {
-							videoTime = 10; //10
+							videoTime = 0; //10
+							
 							document.getElementById("question").innerHTML = "Gdzie nalepiej umieścić mikrofony, aby uniknąć sprzężenia zwrotnego?";
 							document.getElementById("a_text").innerHTML = "Z przodu głośnika.";
 							document.getElementById("b_text").innerHTML = "Z tyłu głośnika.";
@@ -442,15 +445,16 @@
 									for (const answer of answers) {
 										if (answer.checked) {
 											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
-										}
+										}  
 									}
+									document.getElementById("x").checked = true;
 									question2();
 								}
 							}, 1000);
 						}
 
 						function question2() {
-							videoTime = 10;
+							videoTime = 0;
 							document.getElementById("question").innerHTML = "Jak należy zabezpieczyć kable przed potknięciem?";
 							document.getElementById("a_text").innerHTML = "Przykleić je taśmą typu gaffer do podłogi.";
 							document.getElementById("b_text").innerHTML = "Układać je blisko dolnej krawędzi ściany.";
@@ -469,15 +473,16 @@
 									for (const answer of answers) {
 										if (answer.checked) {
 											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
-										}
+										}  
 									}
+									document.getElementById("x").checked = true;
 									question3();
 								}
 							}, 1000);
 						}
 
 						function question3() {
-							videoTime = 10;
+							videoTime = 0;
 							document.getElementById("question").innerHTML = "Czy odłączenie zasilacza jest równoznaczne z wyłączeniem go?";
 							document.getElementById("a_text").innerHTML = "Tak. Odłączenie zasilacza pełni tą samą rolę co wbudowany przełącznik on/off";
 							document.getElementById("b_text").innerHTML = "Tak. Kożystamy z takiej opcji, gdy przypadkowo włączymy muzykę.";
@@ -496,15 +501,16 @@
 									for (const answer of answers) {
 										if (answer.checked) {
 											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
-										}
+										}  
 									}
+									document.getElementById("x").checked = true;
 									question4();
 								}
 							}, 1000);
 						}
 
 						function question4() {
-							videoTime = 10;
+							videoTime = 0;
 							document.getElementById("question").innerHTML = "Czy mikrofon pojemnościowy (condencer mic) potrzebuje dodatkowego zasilania?";
 							document.getElementById("a_text").innerHTML = "Tak, potrzebuje dodatkowego zasilania +48V DC.";
 							document.getElementById("b_text").innerHTML = "Nie, mikser zawsze zasila wszystkie mikrofony.";
@@ -523,15 +529,16 @@
 									for (const answer of answers) {
 										if (answer.checked) {
 											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
-										}
+										}  
 									}
+									document.getElementById("x").checked = true;
 									question5();
 								}
 							}, 1000);
 						}
 
 						function question5() {
-							videoTime = 10;
+							videoTime = 0;
 							document.getElementById("question").innerHTML = "Do czego służy pokrętło pre-amp gain?";
 							document.getElementById("a_text").innerHTML = "Do wzmacniania sygnału wchodzącego do konsoli.";
 							document.getElementById("b_text").innerHTML = "Do wzmacniania sygnału wychodzącego z konsoli.";
@@ -550,15 +557,16 @@
 									for (const answer of answers) {
 										if (answer.checked) {
 											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
-										}
+										}  
 									}
+									document.getElementById("x").checked = true;
 									question6();
 								}
 							}, 1000);
 						}
 
 						function question6() {
-							videoTime = 10;
+							videoTime = 0;
 							document.getElementById("question").innerHTML = "Co należy zrobić, jeżeli pojawi się efekt sprzężenia zwrotnego?";
 							document.getElementById("a_text").innerHTML = "Natychmiast wyłączyć zasilacz!";
 							document.getElementById("b_text").innerHTML = "Natychmiast wyłączić mikser!";
@@ -577,15 +585,16 @@
 									for (const answer of answers) {
 										if (answer.checked) {
 											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
-										}
+										}  
 									}
+									document.getElementById("x").checked = true;
 									question7();
 								}
 							}, 1000);
 						}
 
 						function question7() {
-							videoTime = 10;
+							videoTime = 0;
 							document.getElementById("question").innerHTML = "Do czego może służyć wyjście AUX z konsoli?";
 							document.getElementById("a_text").innerHTML = "Do zmiany cyfrowych efektów na analogowej konsoli.";
 							document.getElementById("b_text").innerHTML = "Do puszczania muzyki z głównych głośników.";
@@ -604,15 +613,16 @@
 									for (const answer of answers) {
 										if (answer.checked) {
 											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
-										}
+										}  
 									}
+									document.getElementById("x").checked = true;
 									question8();
 								}
 							}, 1000);
 						}
 
 						function question8() {
-							videoTime = 10;
+							videoTime = 0;
 							document.getElementById("question").innerHTML = "Czy kable DMX / XLR mogą być używane zamiennie?";
 							document.getElementById("a_text").innerHTML = "Nie, taka zamiana nie zadziała.";
 							document.getElementById("b_text").innerHTML = "Tak, są one identyczne.";
@@ -631,15 +641,16 @@
 									for (const answer of answers) {
 										if (answer.checked) {
 											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
-										}
+										}  
 									}
+									document.getElementById("x").checked = true;
 									question9();
 								}
 							}, 1000);
 						}
 
 						function question9() {
-							videoTime = 10;
+							videoTime = 0;
 							document.getElementById("question").innerHTML = "Jakie są odpowiedzialności członków zespołu radiowęzła?";
 							document.getElementById("a_text").innerHTML = "Muzyka na przerwach, organizacja techniczna wydarzeń, oświetlenie.";
 							document.getElementById("b_text").innerHTML = "Muzyka na przerwach, organizacja techniczna wydarzeń.";
@@ -658,15 +669,16 @@
 									for (const answer of answers) {
 										if (answer.checked) {
 											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
-										}
+										}  
 									}
+									document.getElementById("x").checked = true;
 									question10();
 								}
 							}, 1000);
 						}
 
 						function question10() {
-							videoTime = 10;
+							videoTime = 0;
 							document.getElementById("question").innerHTML = "Czy członkowie radiowęzła mogą być poproszeni o pracę poza godzinami nauki?";
 							document.getElementById("a_text").innerHTML = "Nie, pracują tylko na przerwach.";
 							document.getElementById("b_text").innerHTML = "Nie, pracują tylko od 8 do 16";
@@ -685,9 +697,22 @@
 									for (const answer of answers) {
 										if (answer.checked) {
 											zmiennaUcznia = (zmiennaUcznia + ' ' + answer.id);
-										}
+										}  
 									}
+									
 									alert(zmiennaUcznia);
+
+									let zmiennaUczniaArr = '';
+									for (let i = 0; i < zmiennaUcznia.length; i++) {
+										let znak = zmiennaUcznia.charCodeAt(i);
+										znak = String(znak).padStart(3,'0');
+										zmiennaUczniaArr = zmiennaUczniaArr + znak;
+									}
+									alert(zmiennaUczniaArr);
+									
+									document.getElementById('testTeoretyczny').style.display = "none";
+									document.getElementById('przeniesienieDanych').style.display = "block";
+									document.getElementById('szyfr').value = zmiennaUczniaArr;
 								}
 							}, 1000);
 						}
@@ -698,5 +723,5 @@
 				
 				var form = document.getElementById("formDanychUcznia");
 				function handleForm(event) { event.preventDefault(); }
-				form.addEventListener('submit', handleForm);
+				form.addEventListener('submit', handleForm);	
 })(jQuery);
