@@ -408,7 +408,7 @@
 
 						document.getElementById("x").checked = true; //pierwsze usuniecie radia
 
-						var videoTime = 5; //488
+						var videoTime = 488; //488
 
 						var interval = setInterval(function () {
 							var remainingMinutes = Math.floor(videoTime / 60);
@@ -569,7 +569,7 @@
 							videoTime = 20;
 							document.getElementById("question").innerHTML = "Co należy zrobić, jeżeli pojawi się efekt sprzężenia zwrotnego?";
 							document.getElementById("a_text").innerHTML = "Natychmiast wyłączyć zasilacz!";
-							document.getElementById("b_text").innerHTML = "Natychmiast wyłączić mikser!";
+							document.getElementById("b_text").innerHTML = "Natychmiast wyłączyć mikser!";
 							document.getElementById("c_text").innerHTML = "Natychmiast wyciszyć kanał mikrofonu!";
 							document.getElementById("d_text").innerHTML = "Natychmiast zmniejszyć poziom basu na mikserze.";
 
