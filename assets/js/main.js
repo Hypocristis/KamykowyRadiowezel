@@ -408,7 +408,7 @@
 
 						document.getElementById("x").checked = true; //pierwsze usuniecie radia
 
-						var videoTime = 488; //488
+						var videoTime = 5; //488
 
 						var interval = setInterval(function () {
 							var remainingMinutes = Math.floor(videoTime / 60);
